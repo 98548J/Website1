@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Caleb's Site</title>
+        <style>
+            #name {
+                font-family:'Courier New', Courier, monospace;
+                background-color: rgb(151, 230, 250);
+                border-radius: 5px;
+                text-align: center;
+                width: fit-content;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                position:sticky;
+                margin:auto;
+                color: #646464;
+            }
+            #name-background {
+                position:fixed;
+                background-color: #eee;
+                top: -70px;
+                height: 70px;
+                width: 100%;
+                left: 0px;
+                z-index: -1;
+                background-color:white;
+            }
+            body {
+                background-color: #646464;
+            }
+        </style>
+        <script>
+            function get_random_character() {
+                return String.fromCharCode(getRandomInt(33, 123));
+            }
+            function getRandomInt(min, max) {
+                return min + Math.floor(Math.random() * (max - min));
+            }
+            function replaceAt(string, index, character) {
+                return string.substring(0, index) + character + string.substring(index + 1)
+            }
+            function scrambleUntill(original_string, stop_at_index) {
+                copy = (' ' + original_string).slice(1);
+                for (let i = 0; i < stop_at_index; i++) {
+                    copy = replaceAt(copy, i, get_random_character());
+                }
+                return copy;
+            }
+            function wait(millisec) {
+                return new Promise(resolve => {
+                    setTimeout(() => { resolve('') }, millisec);
+                })
+            }
+            addEventListener("scroll", function () {
+                let title = document.getElementById("name");
+                let title_background = document.getElementById("name-background");
+                maximum = document.documentElement.scrollHeight - window.innerHeight;
+                let color =  "rgb("+ (100 - Math.floor(((window.scrollY) / maximum)*100)).toString() + ", " + (100 - Math.floor(((window.scrollY) / maximum)*75)).toString() + ", " + (100 - Math.floor(((window.scrollY) / maximum)*50)).toString() + ")";
+                body.style.backgroundColor = color;
+                name_element.style.color = color;
+                title.style.top = "10px";
+                let title_background_y = (window.scrollY - 70);
+                if(title_background_y >= 0) {
+                    title_background_y = 0;
+                }
+                title_background.style.top = title_background_y.toString() + "px";
+                if (window.scrollY >= 70 ) {
+                    
+                }
+
+            })
+            addEventListener("DOMContentLoaded", async function () {
+                name_element = document.getElementById("name");
+                start_string = name_element.innerHTML;
+    
+                let name_length = start_string.length;
+                var unscrambled_amount = 0;
+    
+                for( let i = 0; i <= name_length; i++) {
+    
+                    for( let i = 0; i < 5; i++) {
+                        let scrambled = scrambleUntill(start_string, name_length - unscrambled_amount);
+                        name_element.innerHTML = scrambled;
+                        await wait(25);
+                    }
+                    
+                    unscrambled_amount ++;
+                }
+    
+            });
+        </script>
+    </head>
+    <body id="body">
+        <h1 id="name">Integrals</h1>
+        <div id="name-background"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </body>
+    
+</html>
