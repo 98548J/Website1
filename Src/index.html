@@ -4,7 +4,7 @@
     <head>
         <title>Caleb's Site</title>
         <style>
-            #name {
+            .titles {
                 font-family:'Courier New', Courier, monospace;
                 background-color: rgb(151, 230, 250);
                 border-radius: 5px;
@@ -14,22 +14,33 @@
                 padding-bottom: 5px;
                 padding-left: 10px;
                 padding-right: 10px;
-                position:sticky;
+                position:fixed;
                 margin:auto;
                 color: #646464;
+                z-index: 2;
             }
-            #name-background {
+            #back-to-top {
+                user-select: none;
+                transition-duration: 0.25s;
+                transition-property: background, rotate;
+            }
+            #back-to-top:hover {
+                background: tomato;
+                rotate: 2deg;
+            }
+            #title-background {
                 position:fixed;
                 background-color: #eee;
                 top: -70px;
                 height: 70px;
                 width: 100%;
                 left: 0px;
-                z-index: -1;
+                z-index: 1;
                 background-color:white;
             }
             body {
                 background-color: #646464;
+                scroll-behavior: smooth;
             }
         </style>
         <script>
@@ -54,36 +65,79 @@
                     setTimeout(() => { resolve('') }, millisec);
                 })
             }
-            addEventListener("scroll", function () {
-                let title = document.getElementById("name");
-                let title_background = document.getElementById("name-background");
+
+            function title_styling(title) {
+                let title_background = document.getElementById("title-background");
+                let backTT = document.getElementById("back-to-top");
                 maximum = document.documentElement.scrollHeight - window.innerHeight;
                 let color =  "rgb("+ (100 - Math.floor(((window.scrollY) / maximum)*100)).toString() + ", " + (100 - Math.floor(((window.scrollY) / maximum)*75)).toString() + ", " + (100 - Math.floor(((window.scrollY) / maximum)*50)).toString() + ")";
                 body.style.backgroundColor = color;
-                name_element.style.color = color;
+                title_element.style.color = color;
+                backTT.style.color = color;
                 title.style.top = "10px";
+                backTT.style.top = "10px";
                 let title_background_y = (window.scrollY - 70);
                 if(title_background_y >= 0) {
                     title_background_y = 0;
                 }
+
                 title_background.style.top = title_background_y.toString() + "px";
-                if (window.scrollY >= 70 ) {
-                    
+
+                let width = title.getBoundingClientRect().width;
+                let screen_width = window.innerWidth;
+                let left_offset = (screen_width-width) / 2;
+                let left_scroll_offset = window.scrollY - 80;
+
+                if (left_scroll_offset < 0) {
+                    left_scroll_offset = 0;
+                }
+                if (left_scroll_offset > left_offset - 10) {
+                    left_scroll_offset = left_offset - 10;
                 }
 
+                title.style.left = (left_offset - left_scroll_offset).toString() + "px";
+                
+                let backTToffset = -backTT.getBoundingClientRect().width
+                
+                let backTT_scroll_offset = scrollY - 80;
+                
+                if (backTT_scroll_offset < 0) {
+                    backTT_scroll_offset = 0
+                }
+                if (backTT_scroll_offset > (-backTToffset) + 10) {
+                    backTT_scroll_offset = (-backTToffset) + 10;
+                }
+
+                console.log(backTT_scroll_offset);
+
+                backTT.style.right = (backTToffset + backTT_scroll_offset).toString() + "px";
+
+
+            }
+            function back_to_top() {
+                window.scroll({top: 0, behavior: 'smooth'});
+            }
+            addEventListener("resize", function () {
+                title_element = document.getElementById("title");
+                title_styling(title_element);
+            })
+            addEventListener("scroll", function () {
+                title_element = document.getElementById("title");
+                title_styling(title_element);
             })
             addEventListener("DOMContentLoaded", async function () {
-                name_element = document.getElementById("name");
-                start_string = name_element.innerHTML;
+                title_element = document.getElementById("title");
+                title_styling(title_element);
+                start_string = title_element.innerHTML;
     
-                let name_length = start_string.length;
+                let title_length = start_string.length;
                 var unscrambled_amount = 0;
     
-                for( let i = 0; i <= name_length; i++) {
+                for( let i = 0; i <= title_length; i++) {
     
                     for( let i = 0; i < 5; i++) {
-                        let scrambled = scrambleUntill(start_string, name_length - unscrambled_amount);
-                        name_element.innerHTML = scrambled;
+                        let scrambled = scrambleUntill(start_string, title_length - unscrambled_amount);
+                        title_element.innerHTML = scrambled;
                         await wait(25);
                     }
                     
@@ -94,8 +148,78 @@
         </script>
     </head>
     <body id="body">
-        <h1 id="name">Integrals</h1>
-        <div id="name-background"></div>
+        <h1 id="title" class="titles">HELLLLPPPPPP</h1>
+        <h1 id="back-to-top" class="titles" onclick="back_to_top()">Back To Top</h1>
+        <div id="title-background"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>a
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>a
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>bb
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
         <br>
         <br>
         <br>
@@ -109,6 +233,36 @@
         <br>
         <br>
         <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>b
         <br>
         <br>
         <br>
@@ -122,41 +276,7 @@
         <br>
         <br>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br>b
         <br>
         <br>
         <br>
